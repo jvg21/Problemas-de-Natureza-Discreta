@@ -9,8 +9,29 @@ def erro():
     print("Erro na leitura do arquivo")
     print("Saindo....")
     sys.exit()
+  
+def organizar(vet):
+    nsg = []
+    for i in range(0,len(vet)):
+      try:
+        vet[i] = int(vet[i])
+      except:
+        nsg.append(vet[i])
+        vet[i] = '_'
+    try:
+      while True:
+          vet.remove("_")
+    except ValueError:
+      pass
+    vet.sort()
+    nsg.sort()
+    for i in range(0,len(nsg)):
+      vet.append(nsg[i])
 
+    return vet 
+  
     #Código operações
+  
 def Uniao(A, B):
     result = []
     for a in range(0, len(A)):
@@ -18,6 +39,7 @@ def Uniao(A, B):
     for u in range(0, len(B)):
         if B[u] not in result:
             result.append(B[u])
+    result = organizar(result)
     return result
 
 def Inter(A, B):
@@ -28,7 +50,7 @@ def Inter(A, B):
     for i in range(0, len(B)):
         if B[i] in aux:
             result.append(B[i])
-
+    result = organizar(result)
     return result
 
 def Difer(A, B):
@@ -36,7 +58,7 @@ def Difer(A, B):
     for a in range(0, len(A)):
         if A[a] not in B:
             result.append(A[a])
-
+    result = organizar(result)
     return result
 
 def Pvetorial(A, B):
